@@ -12,6 +12,6 @@
     "morgan": "^1.5.0"
   },
   "scripts": {
-    "start": "node --harmony ./projects-server.js"
+    "start": "node projects-server.js"
   }
 }
