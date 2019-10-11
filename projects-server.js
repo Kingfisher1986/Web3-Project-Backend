@@ -9,7 +9,7 @@ const express = require('express'),
 
 // app.use(morgan('dev'));
 // app.use(express.static(__dirname + '/static_html'));
-app.use(express());
+app.use(express().json);
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(bodyParser.json())
 app.use(cors());
