@@ -14,7 +14,6 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 // parse application/json
 app.use(bodyParser.json())
-
 app.use(cors());
 
 // var issue = [{name: 'Issue1', date: new Date(), priority: 1}];
@@ -26,7 +25,8 @@ app.get("/", function(req, res) {
 });
 
 app.get('/projects', function(req, res) {
-  res.header("Access-Control-Allow-Origin", "*");
+  // res.header("Access-Control-Allow-Origin", "*");
+  res.header("Access-Control-Allow-Headers", 'Authorization, Origin,X-Requested-With,Content-Type,Accept,content-type,application/json');
   res.status(200).json(projects);
 });
 
