@@ -7,8 +7,9 @@ const express = require('express'),
       cors = require('cors'),
       app = express();
 
-app.use(morgan('dev'));
-app.use(express.static(__dirname + '/static_html'));
+// app.use(morgan('dev'));
+// app.use(express.static(__dirname + '/static_html'));
+app.use(express());
 // parse application/x-www-form-urlencoded
 app.use(bodyParser.urlencoded({ extended: true }));
 
