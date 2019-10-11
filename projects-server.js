@@ -1,4 +1,6 @@
 "use strict";
+var port = process.env.PORT || 3000;
+
 const express = require('express'),
       bodyParser = require('body-parser'),
       morgan = require('morgan'),
@@ -35,6 +37,6 @@ app.get('/projects', function(req, res) {
   res.status(200).json(projects);
 });
 
-app.listen(8081, function(){
+app.listen(port, function(){
   console.log("ready captain.");
 });
