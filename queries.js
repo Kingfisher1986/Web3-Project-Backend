@@ -1,4 +1,4 @@
-// const Pool = require('pg').Pool
+const Pool = require('pg').Pool
 // const pool = new Pool({
 //     user: 'jan',
 //     host: 'localhost',
@@ -7,10 +7,8 @@
 //     port: 5432,
 // });
 
-const { Client } = require('pg');
 
-
-const pool = new Client({
+const pool = new Pool({
   connectionString: process.env.DATABASE_URL,
   ssl: true,
 });
