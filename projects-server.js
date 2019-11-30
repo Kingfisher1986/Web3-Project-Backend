@@ -2,8 +2,8 @@
 
 const db = require('./queries');
 
-var port = process.env.PORT || 8081;
-// var port = process.env.PORT || 3000;
+// var port = process.env.PORT || 8081;
+var port = process.env.PORT || 3000;
 
 const express = require('express'),
       bodyParser = require('body-parser'),
