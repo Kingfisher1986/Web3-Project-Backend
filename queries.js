@@ -49,9 +49,22 @@ const createIssue = (request, response) => {
     })
 }
 
+const deleteIssue = (request, response) => {
+    let id = request.body.id;
+    console.log(request.body.id);
+    
+    pool.query('DELETE FROM issue WHERE issue_id = $1 RETURNING *', [id], (error, results) => {
+      if (error) {
+        throw error
+      }
+      response.status(200).send(results);
+    })
+  }
+
 module.exports = {
     getProjects,
     createProject,
     getIssues,
-    createIssue
+    createIssue,
+    deleteIssue
 }
