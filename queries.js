@@ -1,11 +1,21 @@
-const Pool = require('pg').Pool
-const pool = new Pool({
-    user: 'jan',
-    host: 'localhost',
-    database: 'web3',
-    password: 'password',
-    port: 5432,
+// const Pool = require('pg').Pool
+// const pool = new Pool({
+//     user: 'jan',
+//     host: 'localhost',
+//     database: 'web3',
+//     password: 'password',
+//     port: 5432,
+// });
+
+const { Client } = require('pg');
+
+
+const pool = new Client({
+  connectionString: process.env.DATABASE_URL,
+  ssl: true,
 });
+
+pool.connect();
 
 const getProjects = (request, response) => {
     pool.query('SELECT * FROM project', (error, results) => {
