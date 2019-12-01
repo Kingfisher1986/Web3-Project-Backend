@@ -1,4 +1,4 @@
-// const Pool = require('pg').Pool
+const Pool = require('pg').Pool
 // const pool = new Pool({
 //     user: 'jan',
 //     host: 'localhost',
@@ -70,7 +70,6 @@ const deleteIssue = (request, response) => {
 
 const updateIssue = (request, response) => {
     const issue = JSON.parse(request.body.data);
-    console.log(issue.issue_id);
     pool.query(
       'UPDATE issue SET done = $1 WHERE issue_id = $2 RETURNING *', [issue.done, issue.issue_id], (error, results) => {
         if (error) {
