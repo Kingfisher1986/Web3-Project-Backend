@@ -1,4 +1,4 @@
-const Pool = require('pg').Pool
+// const Pool = require('pg').Pool
 // const pool = new Pool({
 //     user: 'jan',
 //     host: 'localhost',
@@ -47,8 +47,8 @@ const getIssues = (request, response) => {
 
 const createIssue = (request, response) => {
     let issue = JSON.parse(request.body.data);
-    
-    pool.query('INSERT INTO issue(project_id, name, date, priority, done) VALUES ($1,$2,$3,$4,$5) RETURNING *', [issue.project_id,issue.name,issue.date,issue.priority,issue.done], (error, results) => {
+
+    pool.query('INSERT INTO issue(project_id, name, date, priority, done) VALUES ($1,$2,$3,$4,$5) RETURNING *', [issue.project_id, issue.name, issue.date, issue.priority, issue.done], (error, results) => {
         if (error) {
             throw error;
         }
@@ -59,14 +59,26 @@ const createIssue = (request, response) => {
 
 const deleteIssue = (request, response) => {
     let id = request.body.id;
-    console.log(request.body.id);
-    
+
     pool.query('DELETE FROM issue WHERE issue_id = $1 RETURNING *', [id], (error, results) => {
-      if (error) {
-        throw error
-      }
-      response.status(200).send(results);
+        if (error) {
+            throw error
+        }
+        response.status(200).send(results);
     })
+}
+
+const updateIssue = (request, response) => {
+    const issue = JSON.parse(request.body.data);
+    console.log(issue.issue_id);
+    pool.query(
+      'UPDATE issue SET done = $1 WHERE issue_id = $2 RETURNING *', [issue.done, issue.issue_id], (error, results) => {
+        if (error) {
+          throw error
+        }
+        response.status(200).send(results);
+      }
+    )
   }
 
 module.exports = {
@@ -74,5 +86,6 @@ module.exports = {
     createProject,
     getIssues,
     createIssue,
-    deleteIssue
+    deleteIssue,
+    updateIssue
 }

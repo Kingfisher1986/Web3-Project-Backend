@@ -27,6 +27,7 @@ app.get('/issues', db.getIssues);
 app.post('/projects', db.createProject);
 app.post('/issues', db.createIssue);
 app.delete('/issues', db.deleteIssue);
+app.put('/issues', db.updateIssue);
 
 
 app.listen(port, function(){
